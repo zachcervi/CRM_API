@@ -18,8 +18,6 @@ router.get('/:agent_id', (req, res) => {
     });
     if (result.length > 0) {
 
-        //var parsedAddress = parseAddress(address);
-        var address = _.map(result, a => _.pick(a, 'address'));
 
         var customer = _.map(result, c => _.pick(c, ['name', 'address']));
 
@@ -31,18 +29,7 @@ router.get('/:agent_id', (req, res) => {
 
 });
 
-function parseAddress(a) {
-    if (typeof a !== "string") throw "Address is not a string.";
-    a = a.trim();
-    var r = {},
-        c = a.indexOf(',');
-    r.city = a.slice(0, c);
-    var f = a.substring(c + 2),
-        s = f.lastIndexOf(' ');
-    r.state = f.slice(0, s);
-    r.zip = f.substring(s + 1);
-    return r;
-}
+
 
 //POST
 //Ability to Add New Customer
